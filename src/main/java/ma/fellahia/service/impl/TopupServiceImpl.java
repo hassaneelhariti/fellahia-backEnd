@@ -1,4 +1,4 @@
-package ma.fellahia.service.Impl;
+package ma.fellahia.service.impl;
 
 import ma.fellahia.domain.FellahProfile;
 import ma.fellahia.domain.RechargeCode;
@@ -7,6 +7,7 @@ import ma.fellahia.dto.request.TopupCodeRequest;
 import ma.fellahia.dto.request.TopupRequest;
 import ma.fellahia.dto.response.BalanceResponse;
 import ma.fellahia.dto.response.TransactionResponse;
+import ma.fellahia.exception.CustomExceptions;
 import ma.fellahia.exception.ResourceNotFoundException;
 import ma.fellahia.mapper.TopupMapper;
 import ma.fellahia.repository.CodeRepository;
@@ -17,7 +18,6 @@ import ma.fellahia.service.TopupService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
 
@@ -79,7 +79,8 @@ public class TopupServiceImpl implements TopupService {
             transactionRepository.save(tx);
             return new BalanceResponse(profile.getBalance());
         }
-        throw new RuntimeException("Invalid Code ");
+        throw new CustomExceptions.BusinessException("Invalid Code");
+
 
     }
 

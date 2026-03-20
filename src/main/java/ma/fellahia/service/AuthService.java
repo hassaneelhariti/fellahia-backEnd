@@ -58,9 +58,6 @@ public class AuthService {
                     LawyerProfile.builder().user(user).build());
         }
 
-        // Send OTP (using phone as destination; swap for SMS in prod)
-//        otpService.sendOtp(user.getId(), req.getPhone());
-
         String token = jwtTokenProvider.generateTokenForUser(
                 user.getId(), user.getPhone(), user.getRole().name());
 

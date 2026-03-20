@@ -100,8 +100,9 @@ class LegalCaseServiceTest {
         when(caseRepository.findByReference(anyString())).thenReturn(Optional.empty());
         when(caseRepository.save(any(LegalCase.class))).thenReturn(mockCase);
 
-        assertThatThrownBy(() -> legalCaseService.submit(fellahId, req, List.of(bigFile)))
-                .isInstanceOf(BusinessException.class);
+        Throwable thrown = catchThrowable(() ->
+                legalCaseService.submit(fellahId, req, List.of(bigFile)));
+        assertThat(thrown).isInstanceOf(BusinessException.class);
     }
 
     @Test

@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 public class CustomExceptions {
+    private CustomExceptions() {}
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public static class ResourceNotFoundException extends RuntimeException {
