@@ -69,3 +69,20 @@ jobs:
           MINIO_SECRET_KEY: minioadmin
           MINIO_BUCKET: fellahia-files
           OLLAMA_BASE_URL: http://localhost:11434
+
+      - name: SonarCloud analysis
+        run: ./mvnw sonar:sonar -Ddependency-check.skip=true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          DB_HOST: localhost
+          DB_PORT: 5432
+          DB_NAME: fellahia_db
+          DB_USER: fellahia
+          DB_PASSWORD: 2010
+          JWT_SECRET: test-secret-key-for-ci-only
+          MINIO_ENDPOINT: http://localhost:9000
+          MINIO_ACCESS_KEY: minioadmin
+          MINIO_SECRET_KEY: minioadmin
+          MINIO_BUCKET: fellahia-files
+          OLLAMA_BASE_URL: http://localhost:11434
