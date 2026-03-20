@@ -88,7 +88,7 @@ public class AuthController {
                     .username(userDetails.getUsername())
                     .authorities(userDetails.getAuthorities().stream()
                             .map(GrantedAuthority::getAuthority)
-                            .collect(Collectors.toList()))
+                            .toList())
                     .build();
 
             return ResponseEntity.ok(response);

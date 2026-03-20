@@ -40,7 +40,7 @@ public class ChatService {
         // 2. Build conversation history (last 20 msgs, reversed to chronological)
         List<ChatMessage> history = new ArrayList<>(
                 messageRepository.findTop20ByUserIdOrderByCreatedAtDesc(userId));
-        Collections.reverse(history);
+        history = history.reversed();
 
         List<Message> aiMessages = history.stream()
                 .map(m -> m.getRole().equals("user")
