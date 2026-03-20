@@ -86,3 +86,7 @@ jobs:
           MINIO_SECRET_KEY: minioadmin
           MINIO_BUCKET: fellahia-files
           OLLAMA_BASE_URL: http://localhost:11434
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
