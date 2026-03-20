@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.math.BigDecimal;
+import java.security.SecureRandom;
 import java.time.Year;
 import java.util.List;
 import java.util.Map;
@@ -32,6 +33,8 @@ public class LegalCaseService {
     private final CaseFileRepository fileRepository;
     private final TokenService tokenService;
     private final StorageService storageService;
+    private static final SecureRandom SECURE_RANDOM = new SecureRandom();
+
 
     private static final Map<CaseUrgency, BigDecimal> PRICES = Map.of(
             CaseUrgency.NORMAL,      BigDecimal.valueOf(150),
@@ -145,7 +148,7 @@ public class LegalCaseService {
         String ref;
         do {
             ref = "FL-" + Year.now().getValue() + "-"
-                    + (1000 + new Random().nextInt(8999));
+                    + (1000 + SECURE_RANDOM.nextInt(8999));
         } while (caseRepository.findByReference(ref).isPresent());
         return ref;
     }
