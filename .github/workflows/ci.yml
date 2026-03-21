@@ -70,8 +70,8 @@ jobs:
           MINIO_BUCKET: fellahia-files
           OLLAMA_BASE_URL: http://localhost:11434
 
-      - name: SonarCloud analysis
-        run: ./mvnw sonar:sonar -Ddependency-check.skip=true
+      - name: Build, Test & Analyze
+        run: ./mvnw verify sonar:sonar -Ddependency-check.skip=true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
